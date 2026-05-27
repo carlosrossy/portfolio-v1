@@ -27,14 +27,15 @@ export function HeroSection() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-32 -top-32 size-[500px] rounded-full bg-accent-600/15 blur-3xl"
+        className="pointer-events-none absolute -left-32 -top-32 size-[500px] rounded-full blur-3xl"
+        style={{ backgroundColor: 'var(--hero-glow)' }}
       />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           backgroundImage:
-            'radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.05) 1px, transparent 0)',
+            'radial-gradient(circle at 1px 1px, var(--hero-dots) 1px, transparent 0)',
           backgroundSize: '24px 24px',
           WebkitMaskImage:
             'radial-gradient(ellipse 80% 60% at 30% 40%, black 0%, transparent 70%)',
@@ -57,14 +58,14 @@ export function HeroSection() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
             <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
           </span>
-          Disponível para novos projetos
+          Available for new projects
         </motion.div>
 
         <motion.p
           variants={fadeUp}
           className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
         >
-          Olá, eu sou
+          Hi, my name is
         </motion.p>
 
         <motion.h1
@@ -85,8 +86,8 @@ export function HeroSection() {
           variants={fadeUp}
           className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          Eu construo aplicações web modernas, performáticas e focadas em
-          experiência do usuário.
+          I build modern, performant web applications focused on user
+          experience.
         </motion.p>
 
         <motion.div
@@ -97,14 +98,14 @@ export function HeroSection() {
             href="#projects"
             className="group inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
-            Ver projetos
+            View projects
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
           </a>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
           >
-            Contato
+            Contact
           </a>
         </motion.div>
       </motion.div>

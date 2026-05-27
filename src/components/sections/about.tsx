@@ -56,18 +56,19 @@ export function AboutSection() {
             className="space-y-4 text-base leading-relaxed text-muted-foreground"
           >
             <p>
-              Sou desenvolvedor{' '}
+              I&apos;m a{' '}
               <span className="font-medium text-foreground">Full Stack</span>{' '}
-              focado em criar aplicações modernas, escaláveis e com boa{' '}
+              developer focused on building modern, scalable applications with
+              great{' '}
               <span className="font-medium text-foreground">
-                experiência de usuário
+                user experience
               </span>
               .
             </p>
             <p>
-              Trabalho com React, Next.js e Node, e gosto de construir{' '}
+              I work with React, Next.js and Node, and I enjoy building{' '}
               <span className="font-medium text-foreground">
-                interfaces limpas e performáticas
+                clean, performant interfaces
               </span>
               .
             </p>
@@ -75,7 +76,7 @@ export function AboutSection() {
 
           <motion.div variants={fadeUp}>
             <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              Stack atual
+              Current stack
             </p>
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm lg:grid-cols-1">
               {techs.map((tech) => (

@@ -7,6 +7,9 @@ import { useTheme } from 'next-themes';
 import { GithubIcon, LinkedinIcon } from '@/components/icons';
 import { cn } from '@/lib/utils';
 
+const focusRing =
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-md';
+
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
 
@@ -14,8 +17,11 @@ function ThemeToggle() {
     <button
       type="button"
       onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-      aria-label="Trocar tema"
-      className="text-muted-foreground transition-colors hover:text-foreground"
+      aria-label="Toggle theme"
+      className={cn(
+        'text-muted-foreground transition-colors hover:text-foreground',
+        focusRing
+      )}
     >
       <Sun className="hidden size-5 dark:block" aria-hidden />
       <Moon className="size-5 dark:hidden" aria-hidden />
@@ -88,8 +94,8 @@ function SidebarBody({ onLinkClick }: { onLinkClick?: () => void }) {
         <Link
           href="/"
           onClick={onLinkClick}
-          aria-label="Voltar ao início"
-          className="group inline-block focus:outline-none"
+          aria-label="Back to home"
+          className={cn('group inline-block', focusRing)}
         >
           <div
             aria-hidden
@@ -107,10 +113,10 @@ function SidebarBody({ onLinkClick }: { onLinkClick?: () => void }) {
         </Link>
 
         <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
-          Construindo experiências web modernas e performáticas.
+          Building modern, performant web experiences.
         </p>
 
-        <nav aria-label="Seções" className="mt-12 flex flex-col gap-2">
+        <nav aria-label="Sections" className="mt-12 flex flex-col gap-2">
           {links.map((link) => {
             const isActive = active === link.id;
             return (
@@ -123,7 +129,8 @@ function SidebarBody({ onLinkClick }: { onLinkClick?: () => void }) {
                   'group flex items-center gap-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors',
                   isActive
                     ? 'text-foreground'
-                    : 'text-muted-foreground hover:text-foreground'
+                    : 'text-muted-foreground hover:text-foreground',
+                  focusRing
                 )}
               >
                 <span
@@ -152,7 +159,10 @@ function SidebarBody({ onLinkClick }: { onLinkClick?: () => void }) {
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
                 aria-label={social.name}
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className={cn(
+                  'text-muted-foreground transition-colors hover:text-foreground',
+                  focusRing
+                )}
               >
                 <Icon className="size-5" />
               </a>
@@ -196,9 +206,12 @@ export function Sidebar() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="Abrir menu"
+        aria-label="Open menu"
         aria-expanded={open}
-        className="fixed right-4 top-4 z-40 inline-flex size-10 items-center justify-center rounded-lg border border-border bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:bg-muted md:hidden"
+        className={cn(
+          'fixed right-4 top-4 z-40 inline-flex size-10 items-center justify-center rounded-lg border border-border bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:bg-muted md:hidden',
+          focusRing
+        )}
       >
         <Menu className="size-5" />
       </button>
@@ -225,13 +238,16 @@ export function Sidebar() {
           )}
           role="dialog"
           aria-modal="true"
-          aria-label="Menu de navegação"
+          aria-label="Navigation menu"
         >
           <button
             type="button"
             onClick={() => setOpen(false)}
-            aria-label="Fechar menu"
-            className="absolute right-3 top-3 inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            aria-label="Close menu"
+            className={cn(
+              'absolute right-3 top-3 inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground',
+              focusRing
+            )}
           >
             <X className="size-4" />
           </button>

@@ -37,10 +37,7 @@ export function ProjectsSection() {
         variants={container}
         className="max-w-7xl"
       >
-        <motion.div
-          variants={fadeUp}
-          className="mb-12 flex items-center gap-4"
-        >
+        <motion.div variants={fadeUp} className="mb-12 flex items-center gap-4">
           <span className="font-mono text-sm text-accent-500">03.</span>
           <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
             Projects
@@ -64,7 +61,7 @@ export function ProjectsSection() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`Repositório do projeto ${project.title}`}
+                        aria-label={`${project.title} repository`}
                         className="transition-colors hover:text-foreground"
                       >
                         <GithubIcon className="size-5" />
@@ -75,7 +72,7 @@ export function ProjectsSection() {
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`Demo do projeto ${project.title}`}
+                        aria-label={`${project.title} demo`}
                         className="transition-colors hover:text-foreground"
                       >
                         <ArrowUpRight className="size-5" />
@@ -110,15 +107,12 @@ export function ProjectsSection() {
         </ul>
 
         {hasMore && (
-          <motion.div
-            variants={fadeUp}
-            className="mt-10 flex justify-center"
-          >
+          <motion.div variants={fadeUp} className="mt-10 flex justify-center">
             <Link
               href="/projects"
               className="group inline-flex items-center gap-2 rounded-lg border border-border bg-muted/30 px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent-500/40 hover:bg-muted"
             >
-              Ver todos os projetos ({projects.length})
+              Show More
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </motion.div>

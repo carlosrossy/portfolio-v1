@@ -12,20 +12,20 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    period: '2024 — Atual',
-    role: 'Desenvolvedor Full Stack',
-    company: 'Freelance / Projetos pessoais',
+    period: '2024 — Present',
+    role: 'Full Stack Developer',
+    company: 'Freelance / Personal projects',
     description:
-      'Desenvolvimento de aplicações web completas utilizando React, Next.js e Node.js.',
+      'Building complete web applications with React, Next.js and Node.js.',
     tech: ['React', 'Next.js', 'Node.js'],
   },
   {
     period: '2023 — 2024',
-    role: 'Suporte Técnico / TI',
-    company: 'Experiência anterior',
+    role: 'IT / Technical Support',
+    company: 'Previous experience',
     description:
-      'Atuação com suporte, manutenção de sistemas e infraestrutura.',
-    tech: ['Suporte', 'Sistemas', 'Infraestrutura'],
+      'Worked with technical support, systems maintenance and infrastructure.',
+    tech: ['Support', 'Systems', 'Infrastructure'],
   },
 ];
 

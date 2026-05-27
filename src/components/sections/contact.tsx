@@ -43,16 +43,16 @@ export function ContactSection() {
           variants={fadeUp}
           className="text-4xl font-bold tracking-tight md:text-5xl"
         >
-          Entre em contato
+          Get in touch
         </motion.h2>
 
         <motion.p
           variants={fadeUp}
           className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          Atualmente estou disponível para novos projetos e oportunidades. Se
-          quiser bater um papo, colaborar em algo ou só dar um oi — manda um
-          e-mail. Respondo o quanto antes.
+          Currently available for new projects and opportunities. If you want
+          to chat, collaborate on something, or just say hi — drop me an
+          email. I&apos;ll get back to you as soon as I can.
         </motion.p>
 
         <motion.div variants={fadeUp} className="mt-10">
@@ -61,7 +61,7 @@ export function ContactSection() {
             className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-accent-500 to-accent-600 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-accent-600/20 transition-all hover:shadow-xl hover:shadow-accent-600/30 hover:brightness-110"
           >
             <Mail className="size-4" />
-            Diga olá
+            Say hello
           </a>
         </motion.div>
       </motion.div>
