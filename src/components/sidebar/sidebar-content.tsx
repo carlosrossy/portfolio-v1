@@ -47,12 +47,27 @@ function useActiveSection(ids: string[]) {
   const [active, setActive] = useState<string>('');
 
   useEffect(() => {
+    const ratios = new Map<string, number>();
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) setActive(visible[0].target.id);
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            ratios.set(entry.target.id, entry.intersectionRatio);
+          } else {
+            ratios.delete(entry.target.id);
+          }
+        }
+
+        let best = '';
+        let bestRatio = -1;
+        for (const [id, ratio] of ratios) {
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            best = id;
+          }
+        }
+        setActive(best);
       },
       {
         rootMargin: '-30% 0px -55% 0px',

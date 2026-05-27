@@ -1,6 +1,6 @@
 export function ExperienceSection() {
   return (
-    <section id="experience">
+    <section id="experience" className="px-6 py-20 md:px-10 lg:px-16">
       <h2>Experience</h2>
 
       <div>

@@ -1,6 +1,6 @@
 export function ContactSection() {
   return (
-    <section id="contact">
+    <section id="contact" className="px-6 py-20 md:px-10 lg:px-16">
       <h2>Contact</h2>
 
       <p>Me chama pra conversar ou colaborar em algum projeto.</p>

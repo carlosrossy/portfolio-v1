@@ -1,6 +1,6 @@
 export function ProjectsSection() {
   return (
-    <section id="projects">
+    <section id="projects" className="px-6 py-20 md:px-10 lg:px-16">
       <h2>Projects</h2>
 
       <div>
