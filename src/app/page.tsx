@@ -1,7 +1,17 @@
+import { AboutSection } from '@/components/sections/about';
+import { ContactSection } from '@/components/sections/contact';
+import { ExperienceSection } from '@/components/sections/experience';
+import { HeroSection } from '@/components/sections/hero';
+import { ProjectsSection } from '@/components/sections/projects';
+
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1>Portfolio em construção 🚀</h1>
+    <main className="flex flex-col gap-24 p-10">
+      <HeroSection />
+      <AboutSection />
+      <ExperienceSection />
+      <ProjectsSection />
+      <ContactSection />
     </main>
   );
 }
