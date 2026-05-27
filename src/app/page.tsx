@@ -6,12 +6,12 @@ import { ProjectsSection } from '@/components/sections/projects';
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-32 px-0">
+    <div className="flex flex-col gap-32 px-0">
       <HeroSection />
       <AboutSection />
       <ExperienceSection />
       <ProjectsSection />
       <ContactSection />
-    </main>
+    </div>
   );
 }
