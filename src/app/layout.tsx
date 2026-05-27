@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import { Sidebar } from '@/components/sidebar/sidebar-content';
+import { Providers } from '@/components/providers';
 
 export const metadata: Metadata = {
   title: 'Prompt Manager',
@@ -20,13 +21,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} dark`}>
+    <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
       <body className="min-h-screen bg-background text-foreground antialiased">
-        <div className="flex">
-          <Sidebar />
+        <Providers>
+          <div className="flex">
+            <Sidebar />
 
-          <main className="flex-1 md:ml-[280px]">{children}</main>
-        </div>
+            <main className="flex-1 md:ml-[280px]">{children}</main>
+          </div>
+        </Providers>
       </body>
     </html>
   );

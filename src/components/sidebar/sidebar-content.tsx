@@ -2,9 +2,26 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Mail, Menu, X } from 'lucide-react';
+import { Mail, Menu, Moon, Sun, X } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import { GithubIcon, LinkedinIcon } from '@/components/icons';
 import { cn } from '@/lib/utils';
+
+function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme();
+
+  return (
+    <button
+      type="button"
+      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+      aria-label="Trocar tema"
+      className="text-muted-foreground transition-colors hover:text-foreground"
+    >
+      <Sun className="hidden size-5 dark:block" aria-hidden />
+      <Moon className="size-5 dark:hidden" aria-hidden />
+    </button>
+  );
+}
 
 const links = [
   { name: 'About', href: '/#about', id: 'about' },
@@ -123,23 +140,27 @@ function SidebarBody({ onLinkClick }: { onLinkClick?: () => void }) {
         </nav>
       </div>
 
-      <div className="flex items-center gap-5">
-        {socials.map((social) => {
-          const Icon = social.icon;
-          const external = social.href.startsWith('http');
-          return (
-            <a
-              key={social.name}
-              href={social.href}
-              target={external ? '_blank' : undefined}
-              rel={external ? 'noopener noreferrer' : undefined}
-              aria-label={social.name}
-              className="text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <Icon className="size-5" />
-            </a>
-          );
-        })}
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-5">
+          {socials.map((social) => {
+            const Icon = social.icon;
+            const external = social.href.startsWith('http');
+            return (
+              <a
+                key={social.name}
+                href={social.href}
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noopener noreferrer' : undefined}
+                aria-label={social.name}
+                className="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <Icon className="size-5" />
+              </a>
+            );
+          })}
+        </div>
+
+        <ThemeToggle />
       </div>
     </div>
   );
