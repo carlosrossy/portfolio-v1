@@ -21,7 +21,7 @@ export const socials: Social[] = [
   },
   {
     name: 'Instagram',
-    href: 'https://www.instagram.com/',
+    href: 'https://www.instagram.com/eng.carlosrossy/',
     icon: InstagramIcon,
   },
   {

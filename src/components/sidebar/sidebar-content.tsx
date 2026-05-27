@@ -191,10 +191,8 @@ function ResumeButton({
   className?: string;
 }) {
   return (
-    <a
-      href="/resume.pdf"
-      target="_blank"
-      rel="noopener noreferrer"
+    <Link
+      href="/resume"
       onClick={onClick}
       className={cn(
         'inline-flex items-center gap-2 rounded-md border border-accent-500/40 px-4 py-2 text-sm font-medium text-accent-500 transition-colors hover:bg-accent-500/10',
@@ -204,7 +202,7 @@ function ResumeButton({
     >
       <FileText className="size-4" aria-hidden />
       Resume
-    </a>
+    </Link>
   );
 }
 
@@ -389,7 +387,7 @@ export function Sidebar() {
     <>
       <header
         className={cn(
-          'fixed inset-x-0 top-0 z-40 border-b border-border/40 bg-background/70 backdrop-blur-md transition-transform duration-300 ease-out',
+          'fixed inset-x-0 top-0 z-40 border-b border-border/40 bg-background/70 backdrop-blur-md transition-transform duration-300 ease-out print:hidden',
           hidden ? '-translate-y-full' : 'translate-y-0'
         )}
       >

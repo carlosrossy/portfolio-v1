@@ -8,7 +8,7 @@ export function SocialDock() {
   return (
     <aside
       aria-label="Social links"
-      className="pointer-events-none fixed bottom-0 left-8 z-30 hidden xl:block"
+      className="pointer-events-none fixed bottom-0 left-8 z-30 hidden xl:block print:hidden"
     >
       <ul className="pointer-events-auto flex flex-col items-center gap-6 after:mt-7 after:block after:h-24 after:w-px after:bg-border">
         {socials.map((social) => {

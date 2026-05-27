@@ -8,7 +8,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border/50 px-6 py-10 md:px-10 lg:px-16">
+    <footer className="border-t border-border/50 px-6 py-10 md:px-10 lg:px-16 print:hidden">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-6">
         <ul
           aria-label="Social links"
