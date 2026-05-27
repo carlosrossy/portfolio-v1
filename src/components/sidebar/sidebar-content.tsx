@@ -2,13 +2,101 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Mail, Menu, Moon, Sun, X } from 'lucide-react';
+import { FileText, Mail, Menu, Moon, Sun, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { GithubIcon, LinkedinIcon } from '@/components/icons';
 import { cn } from '@/lib/utils';
 
 const focusRing =
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-md';
+
+const links = [
+  { name: 'About', number: '01', href: '/#about', id: 'about' },
+  { name: 'Experience', number: '02', href: '/#experience', id: 'experience' },
+  { name: 'Projects', number: '03', href: '/#projects', id: 'projects' },
+  { name: 'Contact', number: '04', href: '/#contact', id: 'contact' },
+];
+
+const socials = [
+  {
+    name: 'GitHub',
+    href: 'https://github.com/carlosrossy/carlosrossy',
+    icon: GithubIcon,
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/carlos-eduardo-996672222/',
+    icon: LinkedinIcon,
+  },
+  { name: 'Email', href: 'mailto:carlospintorossy07@gmail.com', icon: Mail },
+];
+
+function TypewriterLogo({ className }: { className?: string }) {
+  const text = 'CR';
+  const [displayed, setDisplayed] = useState(text);
+  const [phase, setPhase] = useState<
+    'idle' | 'typing' | 'pause' | 'deleting'
+  >('idle');
+
+  useEffect(() => {
+    const start = setTimeout(() => setPhase('pause'), 2200);
+    return () => clearTimeout(start);
+  }, []);
+
+  useEffect(() => {
+    if (phase === 'idle') return;
+
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (phase === 'typing') {
+      if (displayed.length < text.length) {
+        timeout = setTimeout(
+          () => setDisplayed(text.slice(0, displayed.length + 1)),
+          180
+        );
+      } else {
+        timeout = setTimeout(() => setPhase('pause'), 2200);
+      }
+    } else if (phase === 'pause') {
+      timeout = setTimeout(() => setPhase('deleting'), 1400);
+    } else {
+      if (displayed.length > 0) {
+        timeout = setTimeout(
+          () => setDisplayed(text.slice(0, displayed.length - 1)),
+          110
+        );
+      } else {
+        timeout = setTimeout(() => setPhase('typing'), 500);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayed, phase]);
+
+  const blinking = phase === 'idle' || phase === 'pause';
+
+  return (
+    <span
+      className={cn(
+        'inline-flex items-baseline font-mono text-2xl font-semibold tracking-tight tabular-nums',
+        className
+      )}
+    >
+      <span className="text-foreground transition-colors group-hover:text-accent-500">
+        {displayed}
+      </span>
+      <span
+        aria-hidden
+        className={cn(
+          'inline-block text-accent-500',
+          blinking && 'animate-pulse'
+        )}
+      >
+        _
+      </span>
+    </span>
+  );
+}
 
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -19,28 +107,15 @@ function ThemeToggle() {
       onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
       aria-label="Toggle theme"
       className={cn(
-        'text-muted-foreground transition-colors hover:text-foreground',
+        'inline-flex size-10 items-center justify-center text-muted-foreground transition-colors hover:text-foreground',
         focusRing
       )}
     >
-      <Sun className="hidden size-5 dark:block" aria-hidden />
-      <Moon className="size-5 dark:hidden" aria-hidden />
+      <Sun className="hidden size-[1.15rem] dark:block" aria-hidden />
+      <Moon className="size-[1.15rem] dark:hidden" aria-hidden />
     </button>
   );
 }
-
-const links = [
-  { name: 'About', href: '/#about', id: 'about' },
-  { name: 'Experience', href: '/#experience', id: 'experience' },
-  { name: 'Projects', href: '/#projects', id: 'projects' },
-  { name: 'Contact', href: '/#contact', id: 'contact' },
-];
-
-const socials = [
-  { name: 'GitHub', href: 'https://github.com', icon: GithubIcon },
-  { name: 'LinkedIn', href: 'https://linkedin.com', icon: LinkedinIcon },
-  { name: 'Email', href: 'mailto:carlosrossy@bemol.com.br', icon: Mail },
-];
 
 function useActiveSection(ids: string[]) {
   const [active, setActive] = useState<string>('');
@@ -85,99 +160,226 @@ function useActiveSection(ids: string[]) {
   return active;
 }
 
-function SidebarBody({ onLinkClick }: { onLinkClick?: () => void }) {
-  const active = useActiveSection(links.map((l) => l.id));
+function useHideOnScroll(threshold = 80) {
+  const [hidden, setHidden] = useState(false);
 
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    const update = () => {
+      const y = Math.max(window.scrollY, 0);
+      const delta = y - lastY;
+
+      if (y < threshold) {
+        setHidden(false);
+      } else if (delta > 8) {
+        setHidden(true);
+      } else if (delta < -8) {
+        setHidden(false);
+      }
+
+      lastY = y;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [threshold]);
+
+  return hidden;
+}
+
+function ResumeButton({
+  onClick,
+  className,
+}: {
+  onClick?: () => void;
+  className?: string;
+}) {
   return (
-    <div className="flex h-full flex-col justify-between px-8 py-10">
-      <div>
-        <Link
-          href="/"
-          onClick={onLinkClick}
-          aria-label="Back to home"
-          className={cn('group inline-block', focusRing)}
-        >
-          <div
-            aria-hidden
-            className="flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-accent-500 to-accent-600 text-base font-semibold text-white shadow-lg shadow-accent-600/20 ring-2 ring-accent-600/20 ring-offset-2 ring-offset-background transition-transform group-hover:scale-105"
+    <a
+      href="/resume.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={onClick}
+      className={cn(
+        'inline-flex items-center gap-2 rounded-md border border-accent-500/40 px-4 py-2 text-sm font-medium text-accent-500 transition-colors hover:bg-accent-500/10',
+        focusRing,
+        className
+      )}
+    >
+      <FileText className="size-4" aria-hidden />
+      Resume
+    </a>
+  );
+}
+
+function DesktopNavLinks({ active }: { active: string }) {
+  return (
+    <nav
+      aria-label="Sections"
+      className="hidden items-center gap-1 md:flex"
+    >
+      {links.map((link) => {
+        const isActive = active === link.id;
+        return (
+          <Link
+            key={link.name}
+            href={link.href}
+            aria-current={isActive ? 'true' : undefined}
+            className={cn(
+              'inline-flex items-center gap-2 px-3.5 py-2 text-sm font-medium transition-colors',
+              isActive
+                ? 'text-foreground'
+                : 'text-muted-foreground hover:text-foreground',
+              focusRing
+            )}
           >
-            CE
+            <span className="font-mono text-xs text-accent-500">
+              {link.number}.
+            </span>
+            <span>{link.name}</span>
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}
+
+function MobileMenu({
+  open,
+  onClose,
+  active,
+}: {
+  open: boolean;
+  onClose: () => void;
+  active: string;
+}) {
+  return (
+    <div
+      className={cn(
+        'fixed inset-0 z-50 md:hidden',
+        open ? 'pointer-events-auto' : 'pointer-events-none'
+      )}
+      aria-hidden={!open}
+    >
+      <div
+        onClick={onClose}
+        className={cn(
+          'absolute inset-0 bg-background/70 backdrop-blur-sm transition-opacity duration-300',
+          open ? 'opacity-100' : 'opacity-0'
+        )}
+      />
+
+      <aside
+        className={cn(
+          'absolute right-0 top-0 h-full w-[280px] border-l border-border bg-background transition-transform duration-300 ease-out',
+          open ? 'translate-x-0' : 'translate-x-full'
+        )}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close menu"
+          className={cn(
+            'absolute right-3 top-3 inline-flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground',
+            focusRing
+          )}
+        >
+          <X className="size-4" />
+        </button>
+
+        <div className="flex h-full flex-col justify-between px-8 py-10">
+          <div>
+            <Link
+              href="/"
+              onClick={onClose}
+              aria-label="Back to home"
+              className={cn('group inline-block', focusRing)}
+            >
+              <TypewriterLogo className="text-3xl" />
+            </Link>
+
+            <nav
+              aria-label="Sections"
+              className="mt-10 flex flex-col gap-1"
+            >
+              {links.map((link) => {
+                const isActive = active === link.id;
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    onClick={onClose}
+                    aria-current={isActive ? 'true' : undefined}
+                    className={cn(
+                      'flex items-baseline gap-2 py-2 text-sm font-medium transition-colors',
+                      isActive
+                        ? 'text-foreground'
+                        : 'text-muted-foreground hover:text-foreground',
+                      focusRing
+                    )}
+                  >
+                    <span className="font-mono text-[11px] text-accent-500">
+                      {link.number}.
+                    </span>
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <div className="mt-8">
+              <ResumeButton onClick={onClose} />
+            </div>
           </div>
 
-          <h1 className="mt-6 text-xl font-bold tracking-tight transition-colors group-hover:text-accent-500">
-            Carlos Eduardo
-          </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Full Stack Developer
-          </p>
-        </Link>
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-5">
+              {socials.map((social) => {
+                const Icon = social.icon;
+                const external = social.href.startsWith('http');
+                return (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target={external ? '_blank' : undefined}
+                    rel={external ? 'noopener noreferrer' : undefined}
+                    aria-label={social.name}
+                    className={cn(
+                      'text-muted-foreground transition-colors hover:text-foreground',
+                      focusRing
+                    )}
+                  >
+                    <Icon className="size-5" />
+                  </a>
+                );
+              })}
+            </div>
 
-        <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
-          Building modern, performant web experiences.
-        </p>
-
-        <nav aria-label="Sections" className="mt-12 flex flex-col gap-2">
-          {links.map((link) => {
-            const isActive = active === link.id;
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={onLinkClick}
-                aria-current={isActive ? 'true' : undefined}
-                className={cn(
-                  'group flex items-center gap-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors',
-                  isActive
-                    ? 'text-foreground'
-                    : 'text-muted-foreground hover:text-foreground',
-                  focusRing
-                )}
-              >
-                <span
-                  aria-hidden
-                  className={cn(
-                    'h-px bg-current transition-all duration-300',
-                    isActive ? 'w-12' : 'w-5 group-hover:w-9'
-                  )}
-                />
-                {link.name}
-              </Link>
-            );
-          })}
-        </nav>
-      </div>
-
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-5">
-          {socials.map((social) => {
-            const Icon = social.icon;
-            const external = social.href.startsWith('http');
-            return (
-              <a
-                key={social.name}
-                href={social.href}
-                target={external ? '_blank' : undefined}
-                rel={external ? 'noopener noreferrer' : undefined}
-                aria-label={social.name}
-                className={cn(
-                  'text-muted-foreground transition-colors hover:text-foreground',
-                  focusRing
-                )}
-              >
-                <Icon className="size-5" />
-              </a>
-            );
-          })}
+            <ThemeToggle />
+          </div>
         </div>
-
-        <ThemeToggle />
-      </div>
+      </aside>
     </div>
   );
 }
 
 export function Sidebar() {
   const [open, setOpen] = useState(false);
+  const active = useActiveSection(links.map((l) => l.id));
+  const hidden = useHideOnScroll();
 
   useEffect(() => {
     if (!open) return;
@@ -199,61 +401,45 @@ export function Sidebar() {
 
   return (
     <>
-      <aside className="fixed left-0 top-0 z-30 hidden h-full w-[280px] border-r border-border bg-background md:block">
-        <SidebarBody />
-      </aside>
-
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        aria-label="Open menu"
-        aria-expanded={open}
+      <header
         className={cn(
-          'fixed right-4 top-4 z-40 inline-flex size-10 items-center justify-center rounded-lg border border-border bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:bg-muted md:hidden',
-          focusRing
+          'fixed inset-x-0 top-0 z-40 border-b border-border/40 bg-background/70 backdrop-blur-md transition-transform duration-300 ease-out',
+          hidden ? '-translate-y-full' : 'translate-y-0'
         )}
       >
-        <Menu className="size-5" />
-      </button>
+        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6 md:px-10 lg:px-16">
+          <Link
+            href="/"
+            aria-label="Back to home"
+            className={cn('group inline-flex items-center', focusRing)}
+          >
+            <TypewriterLogo />
+          </Link>
 
-      <div
-        className={cn(
-          'fixed inset-0 z-50 md:hidden',
-          open ? 'pointer-events-auto' : 'pointer-events-none'
-        )}
-        aria-hidden={!open}
-      >
-        <div
-          onClick={() => setOpen(false)}
-          className={cn(
-            'absolute inset-0 bg-background/70 backdrop-blur-sm transition-opacity duration-300',
-            open ? 'opacity-100' : 'opacity-0'
-          )}
-        />
+          <div className="hidden items-center gap-3 md:flex">
+            <DesktopNavLinks active={active} />
+            <div className="ml-3 flex items-center gap-3 border-l border-border/60 pl-5">
+              <ResumeButton />
+              <ThemeToggle />
+            </div>
+          </div>
 
-        <aside
-          className={cn(
-            'absolute left-0 top-0 h-full w-[280px] border-r border-border bg-background transition-transform duration-300 ease-out',
-            open ? 'translate-x-0' : '-translate-x-full'
-          )}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Navigation menu"
-        >
           <button
             type="button"
-            onClick={() => setOpen(false)}
-            aria-label="Close menu"
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={open}
             className={cn(
-              'absolute right-3 top-3 inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground',
+              'inline-flex size-11 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-muted md:hidden',
               focusRing
             )}
           >
-            <X className="size-4" />
+            <Menu className="size-6" />
           </button>
-          <SidebarBody onLinkClick={() => setOpen(false)} />
-        </aside>
-      </div>
+        </div>
+      </header>
+
+      <MobileMenu open={open} onClose={() => setOpen(false)} active={active} />
     </>
   );
 }

@@ -15,7 +15,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="px-6 py-20 md:px-10 lg:px-16">
-      <div className="max-w-6xl">
+      <div className="mx-auto w-full max-w-6xl">
         <Link
           href="/#projects"
           className="group mb-12 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"

@@ -8,8 +8,8 @@ import { Providers } from '@/components/providers';
 export const metadata: Metadata = {
   metadataBase: new URL('https://carlosrossy.dev'),
   title: {
-    default: 'Carlos Eduardo — Full Stack Developer',
-    template: '%s | Carlos Eduardo',
+    default: 'Carlos Rossy — Full Stack Developer',
+    template: '%s | Carlos Rossy',
   },
   description:
     'Full Stack Developer building modern, performant web applications focused on user experience.',
@@ -20,22 +20,22 @@ export const metadata: Metadata = {
     'TypeScript',
     'Node.js',
     'Portfolio',
-    'Carlos Eduardo',
+    'Carlos Rossy',
   ],
-  authors: [{ name: 'Carlos Eduardo' }],
-  creator: 'Carlos Eduardo',
+  authors: [{ name: 'Carlos Rossy' }],
+  creator: 'Carlos Rossy',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: '/',
-    title: 'Carlos Eduardo — Full Stack Developer',
+    title: 'Carlos Rossy — Full Stack Developer',
     description:
       'Full Stack Developer building modern, performant web applications focused on user experience.',
-    siteName: 'Carlos Eduardo',
+    siteName: 'Carlos Rossy',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Carlos Eduardo — Full Stack Developer',
+    title: 'Carlos Rossy — Full Stack Developer',
     description:
       'Full Stack Developer building modern, performant web applications focused on user experience.',
   },
@@ -57,7 +57,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${inter.variable} scroll-pt-24`}
+      suppressHydrationWarning
+    >
       <body className="scrollbar-thin min-h-screen bg-background text-foreground antialiased">
         <a
           href="#main-content"
@@ -67,15 +71,13 @@ export default function RootLayout({
         </a>
 
         <Providers>
-          <div className="flex min-h-screen">
-            <Sidebar />
+          <Sidebar />
 
-            <div className="flex min-h-screen flex-1 flex-col md:ml-[280px]">
-              <main id="main-content" className="flex-1">
-                {children}
-              </main>
-              <Footer />
-            </div>
+          <div className="flex min-h-screen flex-col pt-20">
+            <main id="main-content" className="flex-1">
+              {children}
+            </main>
+            <Footer />
           </div>
         </Providers>
       </body>

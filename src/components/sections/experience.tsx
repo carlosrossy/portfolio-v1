@@ -12,20 +12,36 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    period: '2024 — Present',
-    role: 'Full Stack Developer',
-    company: 'Freelance / Personal projects',
+    period: 'May 2024 — Present',
+    role: 'Software Engineer (Trainee)',
+    company: 'Bemol Digital',
     description:
-      'Building complete web applications with React, Next.js and Node.js.',
-    tech: ['React', 'Next.js', 'Node.js'],
+      'Working as a software engineer building scalable systems and contributing to production-grade applications in a fast-paced environment. Focused on full stack development and modern engineering practices.',
+    tech: ['React', 'Next.js', 'Node.js', 'TypeScript', 'C#', '.NET', 'Azure'],
   },
   {
-    period: '2023 — 2024',
-    role: 'IT / Technical Support',
-    company: 'Previous experience',
+    period: 'Sep 2024 — Dec 2024',
+    role: 'Computer Science Instructor',
+    company: 'CETAM - Centro de Educação Tecnológica do Amazonas',
     description:
-      'Worked with technical support, systems maintenance and infrastructure.',
-    tech: ['Support', 'Systems', 'Infrastructure'],
+      'Taught modules in databases, web development, entrepreneurship and programming. Responsible for preparing course materials, delivering theoretical and practical classes, and mentoring students.',
+    tech: ['Databases', 'Web Development', 'Teaching'],
+  },
+  {
+    period: 'Mar 2023 — Dec 2023',
+    role: 'Intern Software Developer',
+    company: 'Bemol Digital',
+    description:
+      'Worked as a software development intern contributing to internal systems. Gained experience with backend and frontend development in a professional environment.',
+    tech: ['C#', 'Flutter', 'Angular'],
+  },
+  {
+    period: 'May 2022 — May 2024',
+    role: 'Software Developer (Intern → Junior)',
+    company: 'Clicksoft',
+    description:
+      'Worked on mobile and web applications using React Native. Progressed from intern to junior developer, contributing to production apps and feature development in a remote environment.',
+    tech: ['React Native', 'Mobile Development', 'TypeScript'],
   },
 ];
 
@@ -70,12 +86,9 @@ export function ExperienceSection() {
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
         variants={container}
-        className="relative max-w-4xl"
+        className="relative mx-auto w-full max-w-4xl"
       >
-        <motion.div
-          variants={fadeUp}
-          className="mb-12 flex items-center gap-4"
-        >
+        <motion.div variants={fadeUp} className="mb-12 flex items-center gap-4">
           <span className="font-mono text-sm text-accent-500">02.</span>
           <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
             Experience

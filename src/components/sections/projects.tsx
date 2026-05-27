@@ -44,7 +44,7 @@ export function ProjectsSection() {
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
         variants={container}
-        className="relative max-w-7xl"
+        className="relative mx-auto w-full max-w-6xl"
       >
         <motion.div variants={fadeUp} className="mb-12 flex items-center gap-4">
           <span className="font-mono text-sm text-accent-500">03.</span>

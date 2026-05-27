@@ -48,7 +48,7 @@ export function HeroSection() {
         initial="hidden"
         animate="visible"
         variants={container}
-        className="relative max-w-3xl"
+        className="relative mx-auto w-full max-w-3xl"
       >
         <motion.div
           variants={fadeUp}
@@ -70,40 +70,42 @@ export function HeroSection() {
 
         <motion.h1
           variants={fadeUp}
-          className="text-5xl font-bold tracking-tight md:text-7xl"
+          className="text-6xl font-bold tracking-tight md:text-8xl"
         >
-          Carlos Eduardo
+          Carlos Rossy
         </motion.h1>
 
         <motion.h2
           variants={fadeUp}
-          className="mt-4 bg-gradient-to-r from-accent-500 to-accent-600 bg-clip-text text-2xl font-semibold tracking-wide text-transparent md:text-3xl"
+          className="mt-6 bg-gradient-to-r from-accent-500 to-accent-600 bg-clip-text text-3xl font-semibold tracking-wide text-transparent md:text-5xl"
         >
           Full Stack Developer
         </motion.h2>
 
         <motion.p
           variants={fadeUp}
-          className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
+          className="mt-10 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          I build modern, performant web applications focused on user
-          experience.
+          I’m a software engineer specializing in building (and occasionally
+          designing) exceptional digital experiences. Currently, I’m focused on
+          building accessible, human-centered products at{' '}
+          <span className="font-medium text-accent-500">bemol digital</span>.
         </motion.p>
 
         <motion.div
           variants={fadeUp}
-          className="mt-10 flex flex-wrap items-center gap-3"
+          className="mt-12 flex flex-wrap items-center gap-4"
         >
           <a
             href="#projects"
-            className="group inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+            className="group inline-flex items-center gap-2.5 rounded-lg border border-accent-500/50 bg-accent-500/5 px-7 py-3.5 text-base font-medium text-accent-500 transition-all hover:border-accent-500 hover:bg-accent-500/10"
           >
             View projects
-            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight className="size-5 transition-transform group-hover:translate-x-0.5" />
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+            className="inline-flex items-center gap-2.5 rounded-lg border border-border px-7 py-3.5 text-base font-medium text-foreground transition-colors hover:border-accent-500/40 hover:bg-muted/40"
           >
             Contact
           </a>

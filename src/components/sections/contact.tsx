@@ -50,14 +50,14 @@ export function ContactSection() {
           variants={fadeUp}
           className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          Currently available for new projects and opportunities. If you want
-          to chat, collaborate on something, or just say hi — drop me an
-          email. I&apos;ll get back to you as soon as I can.
+          Currently available for new projects and opportunities. If you want to
+          chat, collaborate on something, or just say hi — drop me an email.
+          I&apos;ll get back to you as soon as I can.
         </motion.p>
 
         <motion.div variants={fadeUp} className="mt-10">
           <a
-            href="mailto:carlosrossy@bemol.com.br"
+            href="mailto:carlospintorossy07@gmail.com.br"
             className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-accent-500 to-accent-600 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-accent-600/20 transition-all hover:shadow-xl hover:shadow-accent-600/30 hover:brightness-110"
           >
             <Mail className="size-4" />
