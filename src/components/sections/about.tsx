@@ -73,8 +73,8 @@ export function AboutSection() {
                 <span className="font-medium text-foreground">
                   Software Engineering at UFAM
                 </span>
-                . That’s where I discovered my passion for building software
-                and solving real-world problems through code.
+                . That’s where I discovered my passion for building software and
+                solving real-world problems through code.
               </p>
 
               <p>
@@ -129,18 +129,14 @@ export function AboutSection() {
                 className="pointer-events-none absolute -inset-3 translate-x-2 translate-y-2 rounded-lg border-2 border-accent-500/70 transition-all duration-300 ease-out group-hover:translate-x-5 group-hover:translate-y-5 group-hover:border-accent-500/40"
               />
 
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg border-2 border-transparent bg-gradient-to-br from-accent-500/30 via-accent-600/10 to-transparent transition-colors duration-300 ease-out group-hover:border-accent-500">
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg border-2 border-transparent bg-muted/40 transition-colors duration-300 ease-out group-hover:border-accent-500">
                 <Image
-                  src="/me.jpg"
+                  src="/me_2.png"
                   alt="Carlos Rossy"
                   fill
                   sizes="(min-width: 1024px) 320px, 80vw"
+                  priority
                   className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                />
-
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-accent-500/20 mix-blend-multiply transition-opacity duration-300 group-hover:opacity-0 dark:mix-blend-normal"
                 />
               </div>
             </div>
