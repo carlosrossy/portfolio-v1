@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
+import { Sidebar } from '@/components/sidebar/sidebar-content';
 
 export const metadata: Metadata = {
   title: 'Prompt Manager',
@@ -19,11 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${inter.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="pt-BR" className="dark">
+      <body className="min-h-screen bg-background text-foreground">
+        <div className="flex">
+          <Sidebar />
+
+          <main className="flex-1 md:ml-[280px]">{children}</main>
+        </div>
+      </body>
     </html>
   );
 }
