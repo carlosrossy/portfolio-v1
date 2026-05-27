@@ -49,8 +49,8 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  --hero-dots: rgb(0 0 0 / 0.07);
-  --hero-glow: rgb(120 120 215 / 0.18);
+  --hero-dots: rgb(0 0 0 / 0.05);
+  --hero-glow: rgb(120 120 215 / 0.12);
 }
 
 .dark {
@@ -86,8 +86,8 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 
-  --hero-dots: rgb(255 255 255 / 0.05);
-  --hero-glow: rgb(72 99 247 / 0.15);
+  --hero-dots: rgb(255 255 255 / 0.04);
+  --hero-glow: rgb(72 99 247 / 0.1);
 }
 
 @theme inline {

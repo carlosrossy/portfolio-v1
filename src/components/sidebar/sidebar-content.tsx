@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { FileText, Mail, Menu, Moon, Sun, X } from 'lucide-react';
+import { FileText, Menu, Moon, Sun, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { GithubIcon, LinkedinIcon } from '@/components/icons';
+import { socials } from '@/data/socials';
 import { cn } from '@/lib/utils';
 
 const focusRing =
@@ -15,20 +15,6 @@ const links = [
   { name: 'Experience', number: '02', href: '/#experience', id: 'experience' },
   { name: 'Projects', number: '03', href: '/#projects', id: 'projects' },
   { name: 'Contact', number: '04', href: '/#contact', id: 'contact' },
-];
-
-const socials = [
-  {
-    name: 'GitHub',
-    href: 'https://github.com/carlosrossy/carlosrossy',
-    icon: GithubIcon,
-  },
-  {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/carlos-eduardo-996672222/',
-    icon: LinkedinIcon,
-  },
-  { name: 'Email', href: 'mailto:carlospintorossy07@gmail.com', icon: Mail },
 ];
 
 function TypewriterLogo({ className }: { className?: string }) {

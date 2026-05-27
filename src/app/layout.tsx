@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import { Sidebar } from '@/components/sidebar/sidebar-content';
+import { SocialDock } from '@/components/social-dock';
 import { Footer } from '@/components/footer';
 import { Providers } from '@/components/providers';
 
@@ -72,6 +73,7 @@ export default function RootLayout({
 
         <Providers>
           <Sidebar />
+          <SocialDock />
 
           <div className="flex min-h-screen flex-col pt-20">
             <main id="main-content" className="flex-1">

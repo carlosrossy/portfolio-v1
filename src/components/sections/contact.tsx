@@ -1,7 +1,6 @@
 'use client';
 
 import { motion, type Variants } from 'framer-motion';
-import { Mail } from 'lucide-react';
 
 const container: Variants = {
   hidden: {},
@@ -58,9 +57,8 @@ export function ContactSection() {
         <motion.div variants={fadeUp} className="mt-10">
           <a
             href="mailto:carlospintorossy07@gmail.com.br"
-            className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-accent-500 to-accent-600 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-accent-600/20 transition-all hover:shadow-xl hover:shadow-accent-600/30 hover:brightness-110"
+            className="inline-flex items-center rounded-lg border border-accent-500/50 bg-accent-500/5 px-7 py-3.5 text-base font-medium text-accent-500 transition-all hover:border-accent-500 hover:bg-accent-500/10"
           >
-            <Mail className="size-4" />
             Say hello
           </a>
         </motion.div>

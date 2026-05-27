@@ -45,7 +45,7 @@ export function AboutSection() {
       <div
         aria-hidden
         className="pointer-events-none absolute -top-32 right-0 size-[420px] rounded-full blur-3xl"
-        style={{ backgroundColor: 'var(--chart-2)', opacity: 0.1 }}
+        style={{ backgroundColor: 'var(--accent-500)', opacity: 0.07 }}
       />
 
       <motion.div
