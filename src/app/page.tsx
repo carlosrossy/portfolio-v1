@@ -6,7 +6,7 @@ import { ProjectsSection } from '@/components/sections/projects';
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-24 p-10">
+    <main className="flex flex-col gap-32 px-10 py-20">
       <HeroSection />
       <AboutSection />
       <ExperienceSection />
