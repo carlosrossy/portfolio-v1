@@ -6,7 +6,7 @@ import { Mail } from 'lucide-react';
 const container: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.08 },
+    transition: { staggerChildren: 0.12 },
   },
 };
 
@@ -23,7 +23,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="flex min-h-[60vh] items-center px-6 py-20 md:px-10 lg:px-16"
+      className="flex min-h-[60vh] items-center px-6 py-32 md:px-10 lg:px-16"
     >
       <motion.div
         initial="hidden"

@@ -32,9 +32,17 @@ const experiences: Experience[] = [
 const container: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.08 },
+    transition: { staggerChildren: 0.12 },
   },
 };
+
+const dotColors = [
+  'bg-accent-500',
+  'bg-chart-2',
+  'bg-chart-3',
+  'bg-chart-4',
+  'bg-chart-5',
+];
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -47,13 +55,22 @@ const fadeUp: Variants = {
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="px-6 py-20 md:px-10 lg:px-16">
+    <section
+      id="experience"
+      className="relative overflow-hidden px-6 py-24 md:px-10 lg:px-16"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-32 -left-20 size-[420px] rounded-full blur-3xl"
+        style={{ backgroundColor: 'var(--chart-3)', opacity: 0.1 }}
+      />
+
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
         variants={container}
-        className="max-w-4xl"
+        className="relative max-w-4xl"
       >
         <motion.div
           variants={fadeUp}
@@ -67,7 +84,7 @@ export function ExperienceSection() {
         </motion.div>
 
         <ol className="relative ml-3 list-none space-y-12 border-l border-border pl-8">
-          {experiences.map((exp) => (
+          {experiences.map((exp, i) => (
             <motion.li
               key={`${exp.role}-${exp.period}`}
               variants={fadeUp}
@@ -75,7 +92,7 @@ export function ExperienceSection() {
             >
               <span
                 aria-hidden
-                className="absolute -left-[37px] top-1.5 size-2 rounded-full bg-accent-500 ring-4 ring-background"
+                className={`absolute -left-[37px] top-1.5 size-2 rounded-full ring-4 ring-background ${dotColors[i % dotColors.length]}`}
               />
 
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-500">

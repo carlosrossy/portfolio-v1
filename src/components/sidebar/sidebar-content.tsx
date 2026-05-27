@@ -99,7 +99,7 @@ function SidebarBody({ onLinkClick }: { onLinkClick?: () => void }) {
         >
           <div
             aria-hidden
-            className="flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-accent-500 to-accent-600 text-base font-semibold text-white shadow-lg shadow-accent-600/20 transition-transform group-hover:scale-105"
+            className="flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-accent-500 to-accent-600 text-base font-semibold text-white shadow-lg shadow-accent-600/20 ring-2 ring-accent-600/20 ring-offset-2 ring-offset-background transition-transform group-hover:scale-105"
           >
             CE
           </div>

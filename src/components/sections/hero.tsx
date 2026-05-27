@@ -77,7 +77,7 @@ export function HeroSection() {
 
         <motion.h2
           variants={fadeUp}
-          className="mt-4 bg-gradient-to-r from-accent-500 to-accent-600 bg-clip-text text-2xl font-semibold text-transparent md:text-3xl"
+          className="mt-4 bg-gradient-to-r from-accent-500 to-accent-600 bg-clip-text text-2xl font-semibold tracking-wide text-transparent md:text-3xl"
         >
           Full Stack Developer
         </motion.h2>
@@ -119,7 +119,7 @@ export function HeroSection() {
       >
         <div className="flex flex-col items-center gap-2 text-muted-foreground">
           <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-          <ArrowDown className="size-4 animate-bounce" />
+          <ArrowDown className="size-4 animate-float" />
         </div>
       </motion.div>
     </section>

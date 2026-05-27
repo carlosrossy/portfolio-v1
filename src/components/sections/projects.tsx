@@ -11,7 +11,7 @@ const FEATURED_COUNT = 4;
 const container: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.1 },
+    transition: { staggerChildren: 0.12 },
   },
 };
 
@@ -29,13 +29,22 @@ export function ProjectsSection() {
   const hasMore = projects.length > FEATURED_COUNT;
 
   return (
-    <section id="projects" className="px-6 py-20 md:px-10 lg:px-16">
+    <section
+      id="projects"
+      className="relative overflow-hidden px-6 py-24 md:px-10 lg:px-16"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-32 right-0 size-[480px] rounded-full blur-3xl"
+        style={{ backgroundColor: 'var(--chart-1)', opacity: 0.1 }}
+      />
+
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
         variants={container}
-        className="max-w-7xl"
+        className="relative max-w-7xl"
       >
         <motion.div variants={fadeUp} className="mb-12 flex items-center gap-4">
           <span className="font-mono text-sm text-accent-500">03.</span>

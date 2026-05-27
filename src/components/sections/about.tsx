@@ -16,7 +16,7 @@ const techs = [
 const container: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.08 },
+    transition: { staggerChildren: 0.12 },
   },
 };
 
@@ -31,13 +31,22 @@ const fadeUp: Variants = {
 
 export function AboutSection() {
   return (
-    <section id="about" className="px-6 py-20 md:px-10 lg:px-16">
+    <section
+      id="about"
+      className="relative overflow-hidden px-6 py-28 md:px-10 lg:px-16"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-32 right-0 size-[420px] rounded-full blur-3xl"
+        style={{ backgroundColor: 'var(--chart-2)', opacity: 0.1 }}
+      />
+
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
         variants={container}
-        className="max-w-4xl"
+        className="relative max-w-4xl"
       >
         <motion.div
           variants={fadeUp}
